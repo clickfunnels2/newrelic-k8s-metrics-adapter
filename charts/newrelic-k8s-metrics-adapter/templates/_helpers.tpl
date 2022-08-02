@@ -36,6 +36,14 @@ Naming helpers
 {{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "apiservice") }}
 {{- end -}}
 
+{{- define "newrelic-k8s-metrics-adapter.name.apiservice.serviceAccount" -}}
+{{- if include "newrelic.common.serviceAccount.create" . -}}
+  {{- include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "apiservice") -}}
+{{- else -}}
+  {{- include "newrelic.common.serviceAccount.name" . -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "newrelic-k8s-metrics-adapter.name.apiservice-create" -}}
 {{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "apiservice-create") }}
 {{- end -}}
@@ -47,6 +55,7 @@ Naming helpers
 {{- define "newrelic-k8s-metrics-adapter.name.hpa-controller" -}}
 {{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "hpa-controller") }}
 {{- end -}}
+
 
 {{/*
 Return the custom secret name where the NR Personal API key is being stored.
@@ -72,3 +81,16 @@ personalAPIKey or personalAPIKey
 {{- $customSecretPersonalApiKeyName := include "newrelic-k8s-metrics-adapter.customSecretPersonalApiKeyName" . -}}
 {{- and (or $personalAPIKey $customSecretPersonalApiKeyName) }}
 {{- end }}
+
+{{- define "newrelic-k8s-metrics-adapter.fullname.self-signed-issuer" -}}
+{{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "self-signed-issuer") }}
+{{- end -}}
+
+{{- define "newrelic-k8s-metrics-adapter.fullname.root-issuer" -}}
+{{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "root-issuer") }}
+{{- end -}}
+
+{{- define "newrelic-k8s-metrics-adapter.fullname.webhook-cert" -}}
+{{ include "newrelic.common.naming.truncateToDNSWithSuffix" (dict "name" (include "newrelic.common.naming.fullname" .) "suffix" "webhook-cert") }}
+{{- end -}}
+
