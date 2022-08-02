@@ -52,7 +52,7 @@ Naming helpers
 Return the custom secret name where the NR Personal API key is being stored.
 */}}
 {{- define "newrelic-k8s-metrics-adapter.customSecretPersonalApiKeyName" -}}
-    {{- .Values.customSecretPersonalApiKeyName | default "" -}}
+    {{- .Values.customSecretPersonalApiKeyName | default (include "newrelic.common.naming.fullname" .) -}}
 {{- end -}}
 
 {{/*
