@@ -74,4 +74,4 @@ personalAPIKey or personalAPIKey
 {{- $personalAPIKey := include "newrelic-k8s-metrics-adapter.personalAPIKey" . -}}
 {{- $customSecretPersonalApiKeyName := include "newrelic-k8s-metrics-adapter.customSecretPersonalApiKeyName" . -}}
 {{- and (or $personalAPIKey $customSecretPersonalApiKeyName) }}
-{{- end -}}
+{{- end }}
