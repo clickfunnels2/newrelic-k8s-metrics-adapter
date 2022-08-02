@@ -62,9 +62,6 @@ Return the custom secret key name  where the NR Personal API key is being stored
     {{- .Values.customSecretPersonalApiKeyKey | default "personalAPIKey" -}}
 {{- end -}}
 
-{{- define "newrelic-k8s-metrics-adapter.personalAPIKey" -}}
-    {{- .Values.personalAPIKey | default "" -}}
-{{- end -}}
 
 {{/*
 Returns if the template should render, it checks if the required values
